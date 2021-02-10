@@ -164,6 +164,4 @@ which includes the first three test cases. Initially include only the transition
 eventually lead to acceptance. Then modify your DFA to handle the rest of L and the
 other test cases.
 
- 
-
 
