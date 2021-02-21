@@ -5,10 +5,6 @@
 #Instructor:  Marvin Nakayama, marvin@njit.edu
 import os
 
-sectionNumber="006"
-print("Project 1 for CS 341\nSection number: " + sectionNumber + 
-"\nSemester: Spring 2021\nWritten by: Oscar Ojeda Perez, oo89 \nInstructor:  Marvin Nakayama, marvin@njit.edu\n" )
-
 def checkString(stringData):
     
     state = 0
@@ -130,28 +126,32 @@ def checkString(stringData):
 def printState(state):
     if state == -1: 
         print("String rejected.")
-        exit()   
+        main()  
     else:
         print("State: q" + str(state))
             
 
+def main(): 
+    val = input("Would you like to enter a string? (y/n): \n")
 
-val = input("Would you like to enter a string? (y/n): \n")
+    while True: 
+        if(val == 'n'):
+            print("Goodbye! ")
+            exit()
+        elif(val != 'y'):
+            val = input("Please enter 'y' for Yes or 'n' for No \n")
+            continue
+        else:
+            stringData = input("Enter a string: ")
+            print(stringData)
+            checkString(stringData)
+            val = input("Would you like to enter a string? (y/n): \n")
+            continue
 
-while True: 
-    if(val == 'n'):
-        print("Goodbye! ")
-        break
-    elif(val != 'y'):
-        val = input("Please enter 'y' for Yes or 'n' for No \n")
-        continue
-    else:
-       stringData = input("Enter a string: ")
-       print(stringData)
-       checkString(stringData)
-       break
-
-
+sectionNumber="006"
+print("Project 1 for CS 341\nSection number: " + sectionNumber + 
+"\nSemester: Spring 2021\nWritten by: Oscar Ojeda Perez, oo89 \nInstructor:  Marvin Nakayama, marvin@njit.edu\n" )
+main()
                 
             
         
