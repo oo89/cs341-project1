@@ -4,12 +4,12 @@
 #Written by: Oscar Ojeda Perez, oo89 
 #Instructor:  Marvin Nakayama, marvin@njit.edu
 import os
-
+#this meth will check each state and always is going to print the initial state.
 def checkString(stringData):
     
     state = 0
     print("Starting state: q0")
-    
+    #loop the string was entered
     for ch in stringData :
         print("Current character: " + ch)
         #First state that is q0 check if it is Γ
@@ -17,7 +17,7 @@ def checkString(stringData):
             if ch.isalpha() and ch.islower():
                 state = 1
                 printState(state)
-            else: # check this 
+            else: #String rejected.
                 state = -1 
                 printState(state)
                 
@@ -32,7 +32,7 @@ def checkString(stringData):
             elif ch == '@':
                 state = 2 
                 printState(state)
-            else:
+            else:#String rejected.
                 state = -1 
                 printState(state)
                 
@@ -42,16 +42,17 @@ def checkString(stringData):
                 state = 1 
                 printState(state)
             # Trap State 
-            else: # check this 
-                state = -1 
+            else: #String rejected.
+                state = 10
                 printState(state)
+                break
                 
         #q2 check Γ or other 
         elif state == 2:
             if ch.isalpha() and ch.islower():
                 state = 5 
                 printState(state)
-            else: # check this 
+            else: #String rejected.
                 state = -1  
                 printState(state)
                 
@@ -63,7 +64,7 @@ def checkString(stringData):
             elif ch == '.':
                 state = 6
                 printState(state)
-            else: # check this here I could uses trap state q4
+            else: #String rejected.
                 state = -1 
                 printState(state)
         #q6 check n or Γ-n          
@@ -74,7 +75,7 @@ def checkString(stringData):
             elif ch.isalpha() and ch.islower() and ch != 'n':
                 state = 5 
                 printState(state)
-            else: # check this 
+            else: #String rejected. 
                 state = -1 
                 printState(state)
         #q7 check e, ∆ or Γ-e  
@@ -88,7 +89,7 @@ def checkString(stringData):
             elif ch == '.': 
                 state = 6 
                 printState(state)
-            else:
+            else:#String rejected.
                 state = -1 
                 printState(state)
         #q8 check t, Γ-e, ∆ 
@@ -102,10 +103,10 @@ def checkString(stringData):
             elif ch.isalpha() and ch.islower() and ch != 't':
                 state = 5 
                 printState(state)
-            else:
+            else:#String rejected.
                 state = -1 
                 printState(state)
-        #q9 check Γ, ∆, trap with Φ. This is a final state 
+        #q9 check Γ, ∆, trap with Φ. This is a final state (Accepting state)
         elif state == 9:
             if ch == '.':
                 state = 6 
@@ -113,24 +114,29 @@ def checkString(stringData):
             elif ch.isalpha() and ch.islower():
                 state = 5 
                 printState(state)
-            else: # check this. here if the enter @ will brake and also other different tan the other two.
+            else: #String rejected.
                 state = 10 
                 printState(state)
                 
-    # final state after the for 
+    # final state after the for loop 
     if state == 9: 
         print("String accepted.")
     else:
         print("String rejected.")
-        
+#Print State or string is rejected. when I said -1 is that is going to a trap state, the char is not accepted. Thas why in some cases the output finish with the char.        
 def printState(state):
-    if state == -1: 
-        print("String rejected.")
-        main()  
+    if state == -1 or state == 10: 
+        if state == 10: 
+            print("State: q" + str(state))
+            print("String rejected.")
+            main()
+        else:     
+            print("String rejected.")
+            main()
     else:
         print("State: q" + str(state))
             
-
+#main meth to control the inputs from the user. 
 def main(): 
     val = input("Would you like to enter a string? (y/n): \n")
 
